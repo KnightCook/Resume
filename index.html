@@ -23,7 +23,7 @@
             padding: 0;
         }
         
-        /* New Header UI */
+        /* Header UI with glowing border */
         header {
             text-align: center;
             padding: 5rem 2rem 4rem;
@@ -42,12 +42,17 @@
             background-color: var(--bg-card);
         }
         h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 0.5rem; 
+            font-size: 3.8rem; 
+            margin-bottom: 1.5rem; 
             letter-spacing: -1px; 
             background: linear-gradient(90deg, #38bdf8, #ff7b72);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(56,189,248, 0.3);
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, transparent, #38bdf8, #ff7b72, transparent) 1;
+            padding-bottom: 15px;
+            display: inline-block;
         }
         
         h2 { 
@@ -71,41 +76,44 @@
         ul { padding-left: 1.2rem; margin-top: 0.5rem; }
         ul li { margin-bottom: 0.5rem; }
         
-        /* Galleries */
+        /* Galleries with alignment fixes for layout gaps */
         .app-gallery, .cert-gallery {
             display: grid;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-top: 1.5rem;
+            align-items: start; /* Prevents images from stretching vertically */
         }
         .app-gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
         .cert-gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
         
         .app-gallery img, .cert-gallery img {
             width: 100%;
+            height: auto;
             border-radius: 8px;
             border: 1px solid var(--border-color);
             cursor: pointer;
             transition: transform 0.2s ease, border-color 0.2s ease;
             background: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .app-gallery img:hover, .cert-gallery img:hover {
             transform: scale(1.03);
             border-color: var(--text-highlight);
         }
 
-        /* Image Modal (Lightbox) */
+        /* Upgraded Image Modal (Lightbox) */
         .modal {
             display: none;
             position: fixed;
             z-index: 9999;
-            padding-top: 60px;
+            padding-top: 40px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
         }
         .modal-content {
             margin: auto;
@@ -114,18 +122,33 @@
             max-height: 85vh;
             border-radius: 8px;
             object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
+        /* Enlarged and highly visible X button */
         .close {
             position: absolute;
             top: 20px;
-            right: 40px;
+            right: 35px;
             color: #fff;
-            font-size: 40px;
+            font-size: 65px;
             font-weight: bold;
+            line-height: 1;
             transition: 0.3s;
             cursor: pointer;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.8);
+            background: rgba(255, 255, 255, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
-        .close:hover, .close:focus { color: var(--text-highlight); text-decoration: none; }
+        .close:hover, .close:focus { 
+            color: var(--text-dsg); 
+            background: rgba(255, 255, 255, 0.2);
+            text-decoration: none; 
+        }
 
         /* Social Buttons */
         .social-grid {
@@ -165,6 +188,7 @@
 
 <header>
     <img src="images/Nerd.jpg" alt="Knighthunter Thorin Cook" class="profile-pic">
+    <br>
     <h1>Knighthunter Thorin Cook</h1>
     <p style="font-size: 1.25rem; color: #8b949e; margin-top: 0;">IT Specialist & Technical Developer</p>
 </header>
@@ -230,6 +254,7 @@
 
     <h2>Certifications</h2>
     <div class="cert-gallery">
+        <!-- Horizontal DXC and Programming Hub Certificates -->
         <img src="images/DXCav.png" alt="DXC AV">
         <img src="images/DXCclient.png" alt="DXC Client">
         <img src="images/DXCinfo.png" alt="DXC Info">
@@ -237,9 +262,7 @@
         <img src="images/DXCpower.png" alt="DXC Power">
         <img src="images/DXCpowertrain.png" alt="DXC Powertrain">
         <img src="images/DXCprevent.png" alt="DXC Prevent">
-        <img src="images/Erg and MFG.png" alt="Erg and MFG">
-        <img src="images/Global EHS.png" alt="Global EHS">
-        <img src="images/Hazardous waste awareness.png" alt="Hazardous Waste Awareness">
+        <img src="images/DXCsoft.png" alt="DXC Soft">
         <img src="images/Hunter Cook_Artificial Intelligence-1.png" alt="Artificial Intelligence">
         <img src="images/Hunter Cook_Blockchain-1.png" alt="Blockchain">
         <img src="images/Hunter Cook_CSS-1.png" alt="CSS">
@@ -252,27 +275,32 @@
         <img src="images/Hunter Cook_Hacking Advanced-1.png" alt="Hacking Advanced">
         <img src="images/Hunter Cook_IT Basics (1)-1.png" alt="IT Basics">
         <img src="images/Hunter Cook_Machine Learning-1.png" alt="Machine Learning">
-        <img src="images/ISM.png" alt="ISM">
-        <img src="images/Information Security.png" alt="Information Security">
-        <img src="images/Lab Safety.png" alt="Lab Safety">
+        
+        <!-- Lenovo Warranty Basics -->
         <img src="images/LenovoAdmin.png" alt="Lenovo Admin">
         <img src="images/LenovoClaim.png" alt="Lenovo Claim">
+        
+        <!-- Vertical Intel Certificates Placed Last -->
+        <img src="images/Information Security.png" alt="Information Security">
+        <img src="images/ISM.png" alt="ISM">
+        <img src="images/Lab Safety.png" alt="Lab Safety">
+        <img src="images/Hazardous waste awareness.png" alt="Hazardous Waste Awareness">
+        <img src="images/Global EHS.png" alt="Global EHS">
+        <img src="images/Erg and MFG.png" alt="Erg and MFG">
     </div>
 </div>
 
-<!-- Modal Element -->
+<!-- Enahnced Modal Element -->
 <div id="imageModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="modalImg">
 </div>
 
 <script>
-    // JavaScript for Modal Lightbox
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.getElementsByClassName("close")[0];
 
-    // Get all gallery images and add click event
     const images = document.querySelectorAll('.app-gallery img, .cert-gallery img');
     images.forEach(img => {
         img.onclick = function() {
@@ -281,12 +309,10 @@
         }
     });
 
-    // Close on X click
     closeBtn.onclick = function() {
         modal.style.display = "none";
     }
 
-    // Close when clicking outside the image
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
