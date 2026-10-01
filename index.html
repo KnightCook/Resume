@@ -3,270 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hunter Cook | IT Specialist & Developer</title>
+    <title>Knighthunter Thorin Cook - Resume & Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
-            --accent-blue: #0ea5e9;
-            --accent-green: #10b981;
-            --accent-dsg: #8b5cf6;
+            --bg-main: #0b0f15;
+            --bg-card: #151b23;
+            --text-main: #c9d1d9;
+            --text-highlight: #38bdf8;
+            --text-dsg: #ff7b72;
+            --border-color: #242b35;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-
         body {
-            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
             color: var(--text-main);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
-
         header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            padding: 6rem 2rem;
             text-align: center;
-            border-bottom: 2px solid var(--accent-blue);
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #121820 0%, var(--bg-main) 100%);
+            border-bottom: 1px solid var(--border-color);
         }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            color: var(--text-main);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-dsg);
-        }
-
-        section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
+        h1 { color: #ffffff; font-size: 3.5rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        h2 { 
+            color: #ffffff; 
             font-size: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--surface-color);
+            border-bottom: 1px solid var(--border-color); 
+            padding-bottom: 0.75rem; 
+            margin-top: 4rem; 
+            margin-bottom: 2rem; 
         }
-
-        .blue-border { border-color: var(--accent-blue); }
-        .purple-border { border-color: var(--accent-dsg); }
-        .green-border { border-color: var(--accent-green); }
-
-        /* Enterprise IT Grid */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
+        h3 { color: var(--text-highlight); margin-bottom: 0.5rem; font-size: 1.25rem; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 2rem; }
         .card {
-            background-color: var(--surface-color);
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
         }
-
-        .card h3 {
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-        }
-
-        /* App Showcase */
-        .app-showcase {
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 1.5rem; }
+        ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        ul li { margin-bottom: 0.5rem; }
+        
+        /* App Gallery Grid */
+        .app-gallery {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-        }
-
-        .app-row {
-            background-color: var(--surface-color);
-            border-radius: 8px;
-            padding: 2rem;
-        }
-
-        .app-row h3 {
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-        }
-
-        .gallery {
-            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-            overflow-x: auto;
-            padding-bottom: 1rem;
+            margin-top: 1.5rem;
         }
-
-        .gallery img {
-            height: 300px;
+        .app-gallery a {
+            display: block;
+            overflow: hidden;
             border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+        .app-gallery a:hover { border-color: var(--text-highlight); }
+        .app-gallery img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border: 1px solid #334155;
+            display: block;
+            transition: transform 0.3s ease;
         }
+        .app-gallery a:hover img { transform: scale(1.03); }
 
-        /* Game Dev Section */
-        .game-dev {
-            background-color: #110e1a;
-            border: 1px solid var(--accent-dsg);
-            border-radius: 8px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-
-        .game-dev h3 {
-            color: var(--accent-dsg);
-            margin-bottom: 1rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--accent-dsg);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: background 0.3s;
-        }
-
-        .btn:hover { background-color: #7c3aed; }
-
-        /* Certifications List */
-        .cert-list {
+        /* Certifications Grid */
+        .cert-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
-            list-style: none;
+        }
+        .cert-gallery a {
+            display: block;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: #fff; /* White background for transparent PNG certs */
+        }
+        .cert-gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .cert-list li {
-            background-color: var(--surface-color);
-            padding: 1rem;
-            border-radius: 4px;
-            border-left: 4px solid var(--accent-green);
+        /* DSG Style Social Buttons */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
         }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+        .social-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        
+        /* Specific Brand Colors */
+        .btn-discord { background-color: #5865F2; }
+        .btn-youtube { background-color: #FF0000; }
+        .btn-tiktok { background-color: #000000; border: 1px solid #333; }
+        .btn-facebook { background-color: #1877F2; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn-itch { background-color: #fa5c5c; }
+        .btn-steam { background-color: #171a21; }
+        .btn-kickstarter { background-color: #05ce78; color: #000; }
+        .btn-kofi { background-color: #ff5e5b; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Knighthunter Thorin Cook</h1>
-        <p class="subtitle">Hands-on IT professional building internal enterprise automation, cloud identity solutions, and independent game titles. 8 years of experience across Intel engineering labs, Microsoft's corporate campus, and comprehensive IT administration.</p>
-        <div class="social-links">
-            <a href="https://darksluggames.com/" target="_blank" title="Website"><i class="fas fa-globe"></i></a>
-            <a href="https://www.instagram.com/darksluggames/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@darksluggames" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://darksluggames.itch.io/it-speaks" target="_blank" title="Itch.io"><i class="fab fa-itch-io"></i></a>
-            <a href="https://ko-fi.com/darksluggames#galleryItemView" target="_blank" title="Ko-fi"><i class="fas fa-mug-hot"></i></a>
-            <a href="https://www.youtube.com/@DarkSlugGames" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-        </div>
-    </header>
+<header>
+    <h1>Knighthunter Thorin Cook</h1>
+    <p style="font-size: 1.25rem; color: #8b949e;">IT Specialist & Technical Developer</p>
+</header>
 
-    <section>
-        <h2 class="section-title blue-border">Enterprise IT & Administration</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3>Pacific Golf & Turf</h3>
-                <p>Sole IT Administrator managing infrastructure, identity, and security across 7 locations. Transitioned the environment from an outsourced MSP to an internal stack, yielding $72K+ in net annual savings. Migrated 100% of users to Microsoft Entra ID and deployed cloud-managed WatchGuard firewalls.</p>
-            </div>
-            <div class="card">
-                <h3>Microsoft</h3>
-                <p>IT/AV Technician maintaining Systems, Hardware, and Conference Rooms at the Beaverton corporate campus. Handled BIOS/firmware updates, customized OS images, and maintained global AV collaboration environments.</p>
-            </div>
-            <div class="card">
-                <h3>Intel</h3>
-                <p>Lab Technician and Inventory Administrator. Built open-chassis PCs, installed server blades, configured network KVMs, and provisioned tooling for engineering and AI testing labs.</p>
-            </div>
-        </div>
-    </section>
+<div class="container">
+    <div class="card">
+        <p>Hands-on IT professional with 8 years of experience across Intel engineering labs, Microsoft's corporate campus, and a multi-location equipment dealer. Currently managing IT infrastructure, Microsoft 365, and automation at Pacific Golf & Turf. Experienced in deploying cloud-managed firewalls, migrating identity to Microsoft Entra ID, and building internal tools with Power Apps and SharePoint. <!--[cite: 3] --></p>
+    </div>
 
-    <section>
-        <h2 class="section-title green-border">Application Development</h2>
-        <div class="app-showcase">
-            <div class="app-row">
-                <h3>Personal Finance Tracker</h3>
-                <p>A custom-built application handling monthly cash flow, fixed bill tracking, and credit debt visualization.</p>
-                <br>
-                <div class="gallery">
-                    <img src="images/FINANCE APP PIE.png" alt="Finance App Pie Chart">
-                    <img src="images/FINANCE APP BILLS.png" alt="Finance App Bills">
-                    <img src="images/FINANCE APP CREDIT ADD.png" alt="Finance App Credit">
-                </div>
-            </div>
-            <div class="app-row">
-                <h3>PGT Quote Builder App</h3>
-                <p>A Microsoft 365 Power App built to replace manual Excel workflows for commercial robotics sales. It handles list pricing, margins, discounts, and automated PDF quote generation.</p>
-                <br>
-                <div class="gallery">
-                    <img src="images/QUOTE BUILDER APP.png" alt="Quote Builder Interface">
-                    <img src="images/sample_quote_lorem_ipsum.png" alt="Sample Customer Quote">
-                    <img src="images/sample_internal_quote_lorem_ipsum.png" alt="Sample Internal Quote">
-                </div>
-            </div>
+    <h2>Professional Experience</h2>
+    <div class="grid-2">
+        <div class="card">
+            <h3>IT Specialist | Pacific Golf & Turf</h3>
+            <ul>
+                <li>Replaced the outsourced MSP, moving IT onto an internal stack and producing more than $72K in net annual savings. <!--[cite: 3] --></li>
+                <li>Migrated 100% of users off on-premises Active Directory servers to Microsoft Entra ID. <!--[cite: 3] --></li>
+                <li>Deployed WatchGuard T-Series firewalls at 7 locations and replaced legacy VPN with Microsoft Global Secure Access. <!--[cite: 3] --></li>
+            </ul>
         </div>
-    </section>
-
-    <section>
-        <h2 class="section-title purple-border">Dark Slug Game Studio</h2>
-        <div class="game-dev">
-            <h3>Founder & Solo Developer</h3>
-            <p>Developing <strong>It Speaks</strong>, an offline 3D survival horror point-and-click game built in Unreal Engine 5. The project utilizes a local LLM served through Ollama, offline speech recognition, and runtime voice synthesis built on event-driven Blueprint logic to ensure a minimal performance footprint. Focussed on uncanny psychological dread and 90s retro atmospheric design.</p>
-            <a href="https://darksluggames.com/" target="_blank" class="btn">Visit Dark Slug Games</a>
+        <div class="card">
+            <h3>IT / AV Technician | Microsoft</h3>
+            <ul>
+                <li>Reimaged and provisioned Microsoft Teams Rooms and user endpoints, handling BIOS/firmware updates. <!--[cite: 4] --></li>
+                <li>Maintained AV-equipped conference rooms and performed component-level diagnostics and repairs. <!--[cite: 4] --></li>
+                <li>Resolved hardware, software, and AV tickets through ServiceNow. <!--[cite: 4] --></li>
+            </ul>
         </div>
-    </section>
+    </div>
 
-    <section>
-        <h2 class="section-title green-border">28 Certifications</h2>
-        <ul class="cert-list">
-            <li>Cyber Security</li>
-            <li>Information Security</li>
-            <li>Ethical Hacking</li>
-            <li>Advanced Hacking</li>
-            <li>Cryptography</li>
-            <li>Computer Networks</li>
-            <li>Network 101</li>
-            <li>Artificial Intelligence</li>
-            <li>Machine Learning</li>
-            <li>Data Science</li>
-            <li>Power BI</li>
-            <li>Git & CSS</li>
-            <li>Lenovo Warranty Hardware Technician</li>
-            <li>AVLink/TechLink Preventive Maintenance</li>
-        </ul>
-    </section>
+    <h2>Development & Applications</h2>
+    <div class="card">
+        <h3>Power Apps Quote Builder & Finance Application</h3>
+        <p>Built a custom Microsoft 365 Power App to replace the robotics sales team's manual Excel quoting process, and engineered a standalone application for tracking active bills, credit cards, and monthly cash flow. <!--[cite: 10] --></p>
+        
+        <div class="app-gallery">
+            <!-- Quote Builder Images -->
+            <a href="images/QUOTE BUILDER APP.png" target="_blank">
+                <img src="images/QUOTE BUILDER APP.png" alt="Quote Builder App"> <!-- -->
+            </a>
+            <a href="images/sample_quote_lorem_ipsum.png" target="_blank">
+                <img src="images/sample_quote_lorem_ipsum.png" alt="Sample Quote PDF"> <!--[cite: 12] -->
+            </a>
+            <a href="images/sample_internal_quote_lorem_ipsum.png" target="_blank">
+                <img src="images/sample_internal_quote_lorem_ipsum.png" alt="Internal Quote View"> <!--[cite: 12] -->
+            </a>
+            <!-- Finance App Images -->
+            <a href="images/FINANCE APP PIE.png" target="_blank">
+                <img src="images/FINANCE APP PIE.png" alt="Finance App Cash Flow"> <!--[cite: 12] -->
+            </a>
+            <a href="images/FINANCE APP BILLS.png" target="_blank">
+                <img src="images/FINANCE APP BILLS.png" alt="Finance App Bills"> <!--[cite: 12] -->
+            </a>
+            <a href="images/FINANCE APP CREDIT ADD.png" target="_blank">
+                <img src="images/FINANCE APP CREDIT ADD.png" alt="Finance App Credit"> <!--[cite: 12] -->
+            </a>
+        </div>
+    </div>
+
+    <h2>Game Development</h2>
+    <div class="card" style="border-left: 4px solid var(--text-dsg);">
+        <h3 style="color: var(--text-dsg);">Dark Slug Game Studio</h3>
+        <p>Founder & Solo Developer. Currently developing <em>It Speaks</em> in Unreal Engine 5—a psychological horror game featuring an AI character running fully offline on a local LLM served through Ollama. <!--[cite: 4] --></p>
+        
+        <div class="social-grid" style="margin-top: 2rem;">
+            <a href="https://darksluggames.com/" class="social-btn" style="background-color: #242b35;" target="_blank"><i class="fas fa-globe"></i> Website</a>
+            <a href="#" class="social-btn btn-discord" target="_blank"><i class="fab fa-discord"></i> Discord</a> <!--[cite: 13] -->
+            <a href="https://www.youtube.com/@DarkSlugGames" class="social-btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a> <!--[cite: 13] -->
+            <a href="https://www.tiktok.com/@darksluggames" class="social-btn btn-tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a> <!--[cite: 13] -->
+            <a href="#" class="social-btn btn-facebook" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a> <!--[cite: 13] -->
+            <a href="https://www.instagram.com/darksluggames/" class="social-btn btn-instagram" target="_blank"><i class="fab fa-instagram"></i> Instagram</a> <!--[cite: 13] -->
+            <a href="https://darksluggames.itch.io/it-speaks" class="social-btn btn-itch" target="_blank"><i class="fab fa-itch-io"></i> Itch.io</a> <!--[cite: 13] -->
+            <a href="#" class="social-btn btn-steam" target="_blank"><i class="fab fa-steam"></i> Steam Page</a> <!--[cite: 13] -->
+            <a href="#" class="social-btn btn-kickstarter" target="_blank"><i class="fab fa-kickstarter-k"></i> Kickstarter</a> <!--[cite: 13] -->
+            <a href="https://ko-fi.com/darksluggames#galleryItemView" class="social-btn btn-kofi" target="_blank"><i class="fas fa-coffee"></i> Ko-Fi Tip Jar</a> <!--[cite: 13] -->
+        </div>
+    </div>
+
+    <h2>Certifications</h2>
+    <div class="cert-gallery">
+        <a href="images/Hunter Cook_Cyber Security-1.png" target="_blank"><img src="images/Hunter Cook_Cyber Security-1.png" alt="Cyber Security"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Data Science-1.png" target="_blank"><img src="images/Hunter Cook_Data Science-1.png" alt="Data Science"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Machine Learning-1.png" target="_blank"><img src="images/Hunter Cook_Machine Learning-1.png" alt="Machine Learning"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Ethical Hacking-1.png" target="_blank"><img src="images/Hunter Cook_Ethical Hacking-1.png" alt="Ethical Hacking"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Hacking Advanced-1.png" target="_blank"><img src="images/Hunter Cook_Hacking Advanced-1.png" alt="Hacking Advanced"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Artificial Intelligence-1.png" target="_blank"><img src="images/Hunter Cook_Artificial Intelligence-1.png" alt="Artificial Intelligence"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Cryptography-1.png" target="_blank"><img src="images/Hunter Cook_Cryptography-1.png" alt="Cryptography"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Computer Networks-1.png" target="_blank"><img src="images/Hunter Cook_Computer Networks-1.png" alt="Computer Networks"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_Git-1.png" target="_blank"><img src="images/Hunter Cook_Git-1.png" alt="Git"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_CSS-1.png" target="_blank"><img src="images/Hunter Cook_CSS-1.png" alt="CSS"></a> <!--[cite: 12] -->
+        <a href="images/Hunter Cook_IT Basics (1)-1.png" target="_blank"><img src="images/Hunter Cook_IT Basics (1)-1.png" alt="IT Basics"></a> <!--[cite: 12] -->
+        <a href="images/LenovoAdmin.png" target="_blank"><img src="images/LenovoAdmin.png" alt="Lenovo Admin"></a> <!--[cite: 12] -->
+    </div>
+</div>
 
 </body>
 </html>
