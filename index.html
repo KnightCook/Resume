@@ -23,7 +23,7 @@
             padding: 0;
         }
         
-        /* Header UI with glowing border */
+        /* Header UI */
         header {
             text-align: center;
             padding: 5rem 2rem 4rem;
@@ -76,12 +76,12 @@
         ul { padding-left: 1.2rem; margin-top: 0.5rem; }
         ul li { margin-bottom: 0.5rem; }
         
-        /* Galleries with alignment fixes for layout gaps */
+        /* Galleries */
         .app-gallery, .cert-gallery {
             display: grid;
             gap: 1.5rem;
             margin-top: 1.5rem;
-            align-items: start; /* Prevents images from stretching vertically */
+            align-items: start;
         }
         .app-gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
         .cert-gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
@@ -101,7 +101,7 @@
             border-color: var(--text-highlight);
         }
 
-        /* Upgraded Image Modal (Lightbox) */
+        /* Image Modal (Lightbox) */
         .modal {
             display: none;
             position: fixed;
@@ -124,7 +124,6 @@
             object-fit: contain;
             box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
-        /* Enlarged and highly visible X button */
         .close {
             position: absolute;
             top: 20px;
@@ -182,6 +181,57 @@
         .btn-steam { background-color: #171a21; }
         .btn-kickstarter { background-color: #05ce78; color: #000; }
         .btn-kofi { background-color: #ff5e5b; }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 1rem 2rem;
+            }
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                border-image: none;
+                border-bottom: 2px solid var(--text-highlight);
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin-top: 2rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.25rem;
+            }
+            /* Stack side-by-side cards vertically */
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            /* Scale down grid columns to fit two side-by-side on mobile, or stack */
+            .app-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+            .cert-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+            /* Adjust modal close button size for touchscreens */
+            .close {
+                top: 15px;
+                right: 15px;
+                font-size: 45px;
+                width: 45px;
+                height: 45px;
+            }
+            .modal-content {
+                max-width: 95%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -254,7 +304,6 @@
 
     <h2>Certifications</h2>
     <div class="cert-gallery">
-        <!-- Horizontal DXC and Programming Hub Certificates -->
         <img src="images/DXCav.png" alt="DXC AV">
         <img src="images/DXCclient.png" alt="DXC Client">
         <img src="images/DXCinfo.png" alt="DXC Info">
@@ -275,12 +324,8 @@
         <img src="images/Hunter Cook_Hacking Advanced-1.png" alt="Hacking Advanced">
         <img src="images/Hunter Cook_IT Basics (1)-1.png" alt="IT Basics">
         <img src="images/Hunter Cook_Machine Learning-1.png" alt="Machine Learning">
-        
-        <!-- Lenovo Warranty Basics -->
         <img src="images/LenovoAdmin.png" alt="Lenovo Admin">
         <img src="images/LenovoClaim.png" alt="Lenovo Claim">
-        
-        <!-- Vertical Intel Certificates Placed Last -->
         <img src="images/Information Security.png" alt="Information Security">
         <img src="images/ISM.png" alt="ISM">
         <img src="images/Lab Safety.png" alt="Lab Safety">
@@ -290,7 +335,6 @@
     </div>
 </div>
 
-<!-- Enahnced Modal Element -->
 <div id="imageModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="modalImg">
