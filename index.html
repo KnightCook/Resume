@@ -160,4 +160,315 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
-            border: 1px solid rgba(14, 165
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+        
+        /* Galleries */
+        .app-gallery, .cert-gallery {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+        .app-gallery { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .cert-gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        
+        .app-gallery img, .cert-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fff;
+            filter: grayscale(20%);
+        }
+        .app-gallery img:hover, .cert-gallery img:hover {
+            transform: scale(1.05) translateY(-5px);
+            border-color: var(--accent-cyan);
+            filter: grayscale(0%);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 15px rgba(14, 165, 233, 0.3);
+            z-index: 2;
+        }
+
+        /* Upgraded Image Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show { opacity: 1; }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content { transform: scale(1); }
+        
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            color: #fff;
+            font-size: 50px;
+            font-weight: 300;
+            line-height: 1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+        }
+        .close:hover { 
+            color: var(--bg-dark); 
+            background: var(--accent-cyan);
+            transform: rotate(90deg);
+        }
+
+        /* Social Buttons */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+        .social-btn:hover { 
+            transform: translateY(-4px); 
+            filter: brightness(1.15); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* App Specific Colors */
+        .btn-discord { background: linear-gradient(135deg, #5865F2, #4752C4); }
+        .btn-youtube { background: linear-gradient(135deg, #FF0000, #CC0000); }
+        .btn-tiktok { background: linear-gradient(135deg, #000000, #222222); border-color: #444; }
+        .btn-facebook { background: linear-gradient(135deg, #1877F2, #145DBF); }
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn-itch { background: linear-gradient(135deg, #fa5c5c, #d94545); }
+        .btn-steam { background: linear-gradient(135deg, #171a21, #0f1115); }
+        .btn-kickstarter { background: linear-gradient(135deg, #05ce78, #04a35f); color: #000; }
+        .btn-kofi { background: linear-gradient(135deg, #ff5e5b, #d94545); }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            header { padding: 4rem 1rem 3rem; }
+            .profile-pic { width: 130px; height: 130px; }
+            h1 { font-size: 2.5rem; }
+            .title-tag { font-size: 1.1rem; }
+            .container { padding: 1.5rem 1rem; }
+            .card { padding: 1.5rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .job-header { flex-direction: column; gap: 5px; }
+            .job-date { margin-bottom: 10px; }
+            .app-gallery, .cert-gallery { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
+            .close { top: 15px; right: 15px; font-size: 35px; width: 45px; height: 45px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="images/FacePic.jpg" alt="Knighthunter Thorin Cook" class="profile-pic">
+    <h1>Knighthunter Thorin Cook</h1>
+    <div class="title-tag">IT Specialist & Technical Developer</div>
+</header>
+
+<div class="container">
+    <div class="card" style="border-left: 4px solid var(--accent-purple);">
+        <p style="font-size: 1.1rem; margin: 0;">Hands-on IT professional with 8 years of experience across Intel engineering labs, Microsoft's corporate campus, and a multi-location equipment dealer. Currently managing IT infrastructure, Microsoft 365, and automation at Pacific Golf & Turf. Experienced in deploying cloud-managed firewalls, migrating identity to Microsoft Entra ID, and building internal tools with Power Apps and SharePoint.</p>
+    </div>
+
+    <h2><i class="fas fa-briefcase" style="color: var(--accent-cyan);"></i> Professional Experience</h2>
+    <div class="grid-3">
+        <div class="card">
+            <div class="job-header">
+                <h3>IT Specialist</h3>
+                <span class="job-date">Jan 2022 – Present</span>
+            </div>
+            <h4>Pacific Golf & Turf | Portland, OR</h4>
+            <ul>
+                <li>Replaced the outsourced MSP, moving IT onto an internal stack and producing more than $72K in net annual savings.</li>
+                <li>Migrated 100% of users off on-premises Active Directory servers to Microsoft Entra ID.</li>
+                <li>Deployed WatchGuard T-Series firewalls at 7 locations and replaced legacy VPN with Microsoft Global Secure Access.</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <div class="job-header">
+                <h3>IT / AV Technician</h3>
+                <span class="job-date">Dec 2020 – Dec 2022</span>
+            </div>
+            <h4>Microsoft | Beaverton, OR</h4>
+            <ul>
+                <li>Reimaged and provisioned Microsoft Teams Rooms and user endpoints, handling BIOS/firmware updates.</li>
+                <li>Maintained AV-equipped conference rooms and performed component-level diagnostics and repairs.</li>
+                <li>Resolved hardware, software, and AV tickets through ServiceNow.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="job-header">
+                <h3>Lab Technician / Inventory Admin</h3>
+                <span class="job-date">Feb 2018 – Dec 2020</span>
+            </div>
+            <h4>Intel | Hillsboro, OR</h4>
+            <ul>
+                <li>Built open-chassis PCs, desk stations, and equipment racks for AI testing and technology-validation labs.</li>
+                <li>Installed server blades and set up network KVMs for engineering customers.</li>
+                <li>Installed operating systems, flashed BIOS, and provisioned tooling on remote host builds.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2><i class="fas fa-code" style="color: var(--accent-purple);"></i> Development & Applications</h2>
+    <div class="card">
+        <h3>Power Apps Quote Builder & Finance Application</h3>
+        <p>Built a custom Microsoft 365 Power App to replace the robotics sales team's manual Excel quoting process, and engineered a standalone HTML/JS application for tracking active bills, credit cards, and monthly cash flow.</p>
+        
+        <div class="app-gallery">
+            <img src="images/QUOTE BUILDER APP.png" alt="Quote Builder App">
+            <img src="images/sample_quote_lorem_ipsum.png" alt="Sample Quote PDF">
+            <img src="images/sample_internal_quote_lorem_ipsum.png" alt="Internal Quote View">
+            <img src="images/FINANCE APP PIE.png" alt="Finance App Cash Flow">
+            <img src="images/FINANCE APP BILLS.png" alt="Finance App Bills">
+            <img src="images/FINANCE APP CREDIT ADD.png" alt="Finance App Credit">
+        </div>
+    </div>
+
+    <h2><i class="fas fa-gamepad" style="color: var(--accent-dsg);"></i> Game Development</h2>
+    <div class="card" style="border-left: 4px solid var(--accent-dsg);">
+        <h3 style="color: var(--accent-dsg);">Dark Slug Game Studio</h3>
+        <h4>Founder & Solo Developer</h4>
+        <p>Currently developing <em>It Speaks</em> in Unreal Engine 5—a psychological horror game featuring an AI character running fully offline on a local LLM served through Ollama.</p>
+        
+        <div class="social-grid">
+            <a href="https://darksluggames.com/" class="social-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);" target="_blank"><i class="fas fa-globe"></i> DSG Website</a>
+            <a href="#" class="social-btn btn-discord" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://www.youtube.com/@DarkSlugGames" class="social-btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.tiktok.com/@darksluggames" class="social-btn btn-tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="#" class="social-btn btn-facebook" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/darksluggames/" class="social-btn btn-instagram" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://darksluggames.itch.io/it-speaks" class="social-btn btn-itch" target="_blank"><i class="fab fa-itch-io"></i> Itch.io</a>
+            <a href="#" class="social-btn btn-steam" target="_blank"><i class="fab fa-steam"></i> Steam Page</a>
+            <a href="#" class="social-btn btn-kickstarter" target="_blank"><i class="fab fa-kickstarter-k"></i> Kickstarter</a>
+            <a href="https://ko-fi.com/darksluggames#galleryItemView" class="social-btn btn-kofi" target="_blank"><i class="fas fa-coffee"></i> Ko-Fi Tip Jar</a>
+        </div>
+    </div>
+
+    <h2><i class="fas fa-certificate" style="color: var(--accent-cyan);"></i> Certifications</h2>
+    <div class="cert-gallery">
+        <!-- Horizontal DXC and Programming Hub Certificates -->
+        <img src="images/DXCav.png" alt="DXC AV">
+        <img src="images/DXCclient.png" alt="DXC Client">
+        <img src="images/DXCinfo.png" alt="DXC Info">
+        <img src="images/DXCnet.png" alt="DXC Net">
+        <img src="images/DXCpower.png" alt="DXC Power">
+        <img src="images/DXCpowertrain.png" alt="DXC Powertrain">
+        <img src="images/DXCprevent.png" alt="DXC Prevent">
+        <img src="images/DXCsoft.png" alt="DXC Soft">
+        <img src="images/Hunter Cook_Artificial Intelligence-1.png" alt="Artificial Intelligence">
+        <img src="images/Hunter Cook_Blockchain-1.png" alt="Blockchain">
+        <img src="images/Hunter Cook_CSS-1.png" alt="CSS">
+        <img src="images/Hunter Cook_Computer Networks-1.png" alt="Computer Networks">
+        <img src="images/Hunter Cook_Cryptography-1.png" alt="Cryptography">
+        <img src="images/Hunter Cook_Cyber Security-1.png" alt="Cyber Security">
+        <img src="images/Hunter Cook_Data Science-1.png" alt="Data Science">
+        <img src="images/Hunter Cook_Ethical Hacking-1.png" alt="Ethical Hacking">
+        <img src="images/Hunter Cook_Git-1.png" alt="Git">
+        <img src="images/Hunter Cook_Hacking Advanced-1.png" alt="Hacking Advanced">
+        <img src="images/Hunter Cook_IT Basics (1)-1.png" alt="IT Basics">
+        <img src="images/Hunter Cook_Machine Learning-1.png" alt="Machine Learning">
+        
+        <!-- Lenovo Warranty Basics -->
+        <img src="images/LenovoAdmin.png" alt="Lenovo Admin">
+        <img src="images/LenovoClaim.png" alt="Lenovo Claim">
+        
+        <!-- Vertical Intel Certificates -->
+        <img src="images/Information Security.png" alt="Information Security">
+        <img src="images/ISM.png" alt="ISM">
+        <img src="images/Lab Safety.png" alt="Lab Safety">
+        <img src="images/Hazardous waste awareness.png" alt="Hazardous Waste Awareness">
+        <img src="images/Global EHS.png" alt="Global EHS">
+        <img src="images/Erg and MFG.png" alt="Erg and MFG">
+    </div>
+</div>
+
+<div id="imageModal" class="modal">
+  <span class="close" title="Close window">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeBtn = document.getElementsByClassName("close")[0];
+
+    const images = document.querySelectorAll('.app-gallery img, .cert-gallery img');
+    images.forEach(img => {
+        img.onclick = function() {
+            modal.style.display = "block";
+            // Trigger a reflow to allow the opacity transition to play
+            setTimeout(() => {
+                modal.classList.add("show");
+            }, 10);
+            modalImg.src = this.src;
+        }
+    });
+
+    function closeModal() {
+        modal.classList.remove("show");
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300); // Matches CSS transition time
+    }
+
+    closeBtn.onclick = closeModal;
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+</script>
+
+</body>
+</html>
