@@ -7,362 +7,157 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-main: #0b0f15;
-            --bg-card: #151b23;
-            --text-main: #c9d1d9;
-            --text-highlight: #38bdf8;
-            --text-dsg: #ff7b72;
-            --border-color: #242b35;
+            --bg-dark: #050505;
+            --bg-gradient: radial-gradient(circle at 15% 50%, #161033, #050505 50%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-cyan: #0ea5e9;
+            --accent-purple: #8b5cf6;
+            --accent-dsg: #ff7b72;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-dark);
+            background-image: var(--bg-gradient);
+            background-attachment: fixed;
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
         }
         
-        /* Header UI */
+        /* Glassmorphism Header */
         header {
             text-align: center;
-            padding: 5rem 2rem 4rem;
-            background: linear-gradient(145deg, #0a0f18 0%, #172135 100%);
-            border-bottom: 4px solid var(--text-highlight);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            padding: 6rem 2rem 5rem;
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Ambient Header Glow */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .profile-pic {
-            width: 160px;
-            height: 160px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--text-highlight);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            border: 4px solid transparent;
+            background-image: linear-gradient(var(--bg-dark), var(--bg-dark)), linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
             margin-bottom: 1.5rem;
-            background-color: var(--bg-card);
+            position: relative;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
         }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
         h1 { 
-            font-size: 3.8rem; 
-            margin-bottom: 1.5rem; 
-            letter-spacing: -1px; 
-            background: linear-gradient(90deg, #38bdf8, #ff7b72);
+            font-size: 4rem; 
+            margin-bottom: 0.5rem; 
+            letter-spacing: -1.5px; 
+            background: linear-gradient(90deg, #fff, var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(56,189,248, 0.3);
-            border-bottom: 2px solid transparent;
-            border-image: linear-gradient(90deg, transparent, #38bdf8, #ff7b72, transparent) 1;
-            padding-bottom: 15px;
-            display: inline-block;
+            position: relative;
+            z-index: 1;
         }
+        
+        .title-tag {
+            font-size: 1.4rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 3rem 2rem; }
         
         h2 { 
-            color: #ffffff; 
-            font-size: 2rem;
-            border-bottom: 1px solid var(--border-color); 
-            padding-bottom: 0.75rem; 
-            margin-top: 4rem; 
-            margin-bottom: 2rem; 
-        }
-        h3 { color: var(--text-highlight); margin-bottom: 0.5rem; font-size: 1.25rem; }
-        .container { max-width: 1300px; margin: 0 auto; padding: 2rem; }
-        .card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 1.5rem; }
-        ul { padding-left: 1.2rem; margin-top: 0.5rem; }
-        ul li { margin-bottom: 0.5rem; }
-        
-        /* Galleries */
-        .app-gallery, .cert-gallery {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            align-items: start;
-        }
-        .app-gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-        .cert-gallery { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-        
-        .app-gallery img, .cert-gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            background: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .app-gallery img:hover, .cert-gallery img:hover {
-            transform: scale(1.03);
-            border-color: var(--text-highlight);
-        }
-
-        /* Image Modal (Lightbox) */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            padding-top: 40px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.92);
-            backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 8px;
-            object-fit: contain;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
+            font-size: 2.2rem;
             color: #fff;
-            font-size: 65px;
-            font-weight: bold;
-            line-height: 1;
-            transition: 0.3s;
-            cursor: pointer;
-            text-shadow: 0 4px 8px rgba(0,0,0,0.8);
-            background: rgba(255, 255, 255, 0.1);
-            width: 60px;
-            height: 60px;
+            margin-top: 3rem; 
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        .close:hover, .close:focus { 
-            color: var(--text-dsg); 
-            background: rgba(255, 255, 255, 0.2);
-            text-decoration: none; 
+            gap: 15px;
         }
 
-        /* Social Buttons */
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+        h2::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border), transparent);
         }
-        .social-btn {
+
+        h3 { color: var(--accent-cyan); margin-bottom: 0.2rem; font-size: 1.3rem; }
+        h4 { color: var(--text-muted); margin-top: 0; margin-bottom: 1rem; font-weight: 500; }
+
+        /* Glassmorphism Cards */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(14, 165, 233, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(14, 165, 233, 0.1);
+        }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        
+        ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+        ul li { margin-bottom: 0.8rem; color: #cbd5e1; }
+        ul li::marker { color: var(--accent-cyan); }
+
+        /* Experience Job Header Flexbox */
+        .job-header {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
             gap: 10px;
-            padding: 14px 24px;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: transform 0.2s ease, filter 0.2s ease;
         }
-        .social-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
-        .btn-discord { background-color: #5865F2; }
-        .btn-youtube { background-color: #FF0000; }
-        .btn-tiktok { background-color: #000000; border: 1px solid #333; }
-        .btn-facebook { background-color: #1877F2; }
-        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-        .btn-itch { background-color: #fa5c5c; }
-        .btn-steam { background-color: #171a21; }
-        .btn-kickstarter { background-color: #05ce78; color: #000; }
-        .btn-kofi { background-color: #ff5e5b; }
-
-        /* --- MOBILE RESPONSIVE QUERIES --- */
-        @media (max-width: 768px) {
-            header {
-                padding: 3rem 1rem 2rem;
-            }
-            .profile-pic {
-                width: 120px;
-                height: 120px;
-            }
-            h1 {
-                font-size: 2.2rem;
-                margin-bottom: 1rem;
-                border-image: none;
-                border-bottom: 2px solid var(--text-highlight);
-            }
-            h2 {
-                font-size: 1.5rem;
-                margin-top: 2rem;
-            }
-            .container {
-                padding: 1rem;
-            }
-            .card {
-                padding: 1.25rem;
-            }
-            /* Stack side-by-side cards vertically */
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            /* Scale down grid columns to fit two side-by-side on mobile, or stack */
-            .app-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 1rem;
-            }
-            .cert-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 1rem;
-            }
-            /* Adjust modal close button size for touchscreens */
-            .close {
-                top: 15px;
-                right: 15px;
-                font-size: 45px;
-                width: 45px;
-                height: 45px;
-            }
-            .modal-content {
-                max-width: 95%;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <img src="images/FacePic.jpg" alt="Knighthunter Thorin Cook" class="profile-pic">
-    <br>
-    <h1>Knighthunter Thorin Cook</h1>
-    <p style="font-size: 1.25rem; color: #8b949e; margin-top: 0;">IT Specialist & Technical Developer</p>
-</header>
-
-<div class="container">
-    <div class="card">
-        <p>Hands-on IT professional with 8 years of experience across Intel engineering labs, Microsoft's corporate campus, and a multi-location equipment dealer. Currently managing IT infrastructure, Microsoft 365, and automation at Pacific Golf & Turf. Experienced in deploying cloud-managed firewalls, migrating identity to Microsoft Entra ID, and building internal tools with Power Apps and SharePoint.</p>
-    </div>
-
-    <h2>Professional Experience</h2>
-    <div class="grid-2">
-        <div class="card">
-            <h3>IT Specialist | Pacific Golf & Turf</h3>
-            <ul>
-                <li>Replaced the outsourced MSP, moving IT onto an internal stack and producing more than $72K in net annual savings.</li>
-                <li>Migrated 100% of users off on-premises Active Directory servers to Microsoft Entra ID.</li>
-                <li>Deployed WatchGuard T-Series firewalls at 7 locations and replaced legacy VPN with Microsoft Global Secure Access.</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h3>IT / AV Technician | Microsoft</h3>
-            <ul>
-                <li>Reimaged and provisioned Microsoft Teams Rooms and user endpoints, handling BIOS/firmware updates.</li>
-                <li>Maintained AV-equipped conference rooms and performed component-level diagnostics and repairs.</li>
-                <li>Resolved hardware, software, and AV tickets through ServiceNow.</li>
-            </ul>
-        </div>
-    </div>
-
-    <h2>Development & Applications</h2>
-    <div class="card">
-        <h3>Power Apps Quote Builder & Finance Application</h3>
-        <p>Built a custom Microsoft 365 Power App to replace the robotics sales team's manual Excel quoting process, and engineered a standalone application for tracking active bills, credit cards, and monthly cash flow.</p>
-        
-        <div class="app-gallery">
-            <img src="images/QUOTE BUILDER APP.png" alt="Quote Builder App">
-            <img src="images/sample_quote_lorem_ipsum.png" alt="Sample Quote PDF">
-            <img src="images/sample_internal_quote_lorem_ipsum.png" alt="Internal Quote View">
-            <img src="images/FINANCE APP PIE.png" alt="Finance App Cash Flow">
-            <img src="images/FINANCE APP BILLS.png" alt="Finance App Bills">
-            <img src="images/FINANCE APP CREDIT ADD.png" alt="Finance App Credit">
-        </div>
-    </div>
-
-    <h2>Game Development</h2>
-    <div class="card" style="border-left: 4px solid var(--text-dsg);">
-        <h3 style="color: var(--text-dsg);">Dark Slug Game Studio</h3>
-        <p>Founder & Solo Developer. Currently developing <em>It Speaks</em> in Unreal Engine 5—a psychological horror game featuring an AI character running fully offline on a local LLM served through Ollama.</p>
-        
-        <div class="social-grid" style="margin-top: 2rem;">
-            <a href="https://darksluggames.com/" class="social-btn" style="background-color: #242b35;" target="_blank"><i class="fas fa-globe"></i> DSG Website</a>
-            <a href="#" class="social-btn btn-discord" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-            <a href="https://www.youtube.com/@DarkSlugGames" class="social-btn btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-            <a href="https://www.tiktok.com/@darksluggames" class="social-btn btn-tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="#" class="social-btn btn-facebook" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
-            <a href="https://www.instagram.com/darksluggames/" class="social-btn btn-instagram" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://darksluggames.itch.io/it-speaks" class="social-btn btn-itch" target="_blank"><i class="fab fa-itch-io"></i> Itch.io</a>
-            <a href="#" class="social-btn btn-steam" target="_blank"><i class="fab fa-steam"></i> Steam Page</a>
-            <a href="#" class="social-btn btn-kickstarter" target="_blank"><i class="fab fa-kickstarter-k"></i> Kickstarter</a>
-            <a href="https://ko-fi.com/darksluggames#galleryItemView" class="social-btn btn-kofi" target="_blank"><i class="fas fa-coffee"></i> Ko-Fi Tip Jar</a>
-        </div>
-    </div>
-
-    <h2>Certifications</h2>
-    <div class="cert-gallery">
-        <img src="images/DXCav.png" alt="DXC AV">
-        <img src="images/DXCclient.png" alt="DXC Client">
-        <img src="images/DXCinfo.png" alt="DXC Info">
-        <img src="images/DXCnet.png" alt="DXC Net">
-        <img src="images/DXCpower.png" alt="DXC Power">
-        <img src="images/DXCpowertrain.png" alt="DXC Powertrain">
-        <img src="images/DXCprevent.png" alt="DXC Prevent">
-        <img src="images/DXCsoft.png" alt="DXC Soft">
-        <img src="images/Hunter Cook_Artificial Intelligence-1.png" alt="Artificial Intelligence">
-        <img src="images/Hunter Cook_Blockchain-1.png" alt="Blockchain">
-        <img src="images/Hunter Cook_CSS-1.png" alt="CSS">
-        <img src="images/Hunter Cook_Computer Networks-1.png" alt="Computer Networks">
-        <img src="images/Hunter Cook_Cryptography-1.png" alt="Cryptography">
-        <img src="images/Hunter Cook_Cyber Security-1.png" alt="Cyber Security">
-        <img src="images/Hunter Cook_Data Science-1.png" alt="Data Science">
-        <img src="images/Hunter Cook_Ethical Hacking-1.png" alt="Ethical Hacking">
-        <img src="images/Hunter Cook_Git-1.png" alt="Git">
-        <img src="images/Hunter Cook_Hacking Advanced-1.png" alt="Hacking Advanced">
-        <img src="images/Hunter Cook_IT Basics (1)-1.png" alt="IT Basics">
-        <img src="images/Hunter Cook_Machine Learning-1.png" alt="Machine Learning">
-        <img src="images/LenovoAdmin.png" alt="Lenovo Admin">
-        <img src="images/LenovoClaim.png" alt="Lenovo Claim">
-        <img src="images/Information Security.png" alt="Information Security">
-        <img src="images/ISM.png" alt="ISM">
-        <img src="images/Lab Safety.png" alt="Lab Safety">
-        <img src="images/Hazardous waste awareness.png" alt="Hazardous Waste Awareness">
-        <img src="images/Global EHS.png" alt="Global EHS">
-        <img src="images/Erg and MFG.png" alt="Erg and MFG">
-    </div>
-</div>
-
-<div id="imageModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="modalImg">
-</div>
-
-<script>
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImg");
-    const closeBtn = document.getElementsByClassName("close")[0];
-
-    const images = document.querySelectorAll('.app-gallery img, .cert-gallery img');
-    images.forEach(img => {
-        img.onclick = function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-        }
-    });
-
-    closeBtn.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-
-</body>
-</html>
+        .job-date {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-cyan);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 1px solid rgba(14, 165
